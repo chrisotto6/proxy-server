@@ -9,10 +9,12 @@ const app = express()
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000,
-  max: 5,
+  max: 100,
 })
 app.use(limiter)
 app.set('trust proxy', 1)
+
+app.use(express.static('public'))
 
 // Routes
 app.use('/api', require('./routes/index'))
